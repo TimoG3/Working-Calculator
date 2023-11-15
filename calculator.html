@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">  
+    <link rel="stylesheet" href="calculatorCSS.css">
+    <div class="title">
+        <h1>Simple Calculator</h1>
+    </div>
+</head>
+<body>
+<div class="container">
+    <div class="calculator">
+        <form>
+            <div class="display">
+                <input type="text" id="result" disabled>
+            </div>
+            <div>
+                <input type="button" onclick="clearInput()" value="C">
+                <input type="button" onclick="backspace()" value="DEL">
+                <input type="button" onclick="calculate()" value="=" class="equal">
+            </div>
+            <div>
+                <input type="button" onclick="append(7)" value="7">
+                <input type="button" onclick="append(8)" value="8">
+                <input type="button" onclick="append(9)" value="9">
+                <input type="button" onclick="multiply()" value="*">
+            </div>
+            <div>
+                <input type="button" onclick="append(4)" value="4">
+                <input type="button" onclick="append(5)" value="5">
+                <input type="button" onclick="append(6)" value="6">
+                <input type="button" onclick="divide()" value="/">
+            </div>
+            <div>
+                <input type="button" onclick="append(1)" value="1">
+                <input type="button" onclick="append(2)" value="2">
+                <input type="button" onclick="append(3)" value="3">
+                <input type="button" onclick="add()" value="+">
+            </div>
+            <div>
+                <input type="button" onclick="append(0)" value="0">
+                <input type="button" onclick="append('00')" value="00">
+                <input type="button" onclick="append('.')" value=".">
+                <input type="button" onclick="subtract()" value="-">
+            </div>
+        </form>
+    </div>
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function append(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function add() {
+            currentOperator = '+';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function subtract() {
+            currentOperator = '-';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = '*';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = '/';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+        
+        function backspace() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+            currentOperator = '';
+        }
+    </script>
+</div>
+</body>
+</html>
